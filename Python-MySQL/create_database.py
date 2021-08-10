@@ -21,7 +21,6 @@ try:
     # executing the query by using cursor object
     my_cursor.execute("CREATE DATABASE " + database.lower())
     print(database, "Database was created successfully.....!")
-    logging.info(database, "New create Database request completed !")
 
 # if database already exists we get exception
 except Exception as message:
@@ -29,6 +28,11 @@ except Exception as message:
     logging.warning(message)
 
 finally:
+    # displaying databases list
+    my_cursor.execute("SHOW DATABASES")
+    print("Databases list :")
+    for databases in my_cursor:
+        print(databases)
     # closing the connection
     my_connection.close()
     print(" connection closed....!")
